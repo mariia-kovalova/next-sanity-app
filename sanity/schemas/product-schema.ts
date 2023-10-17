@@ -1,5 +1,3 @@
-import localization from '@/sanity/config/languages';
-
 const product = {
   name: 'product',
   title: 'Products',

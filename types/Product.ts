@@ -3,7 +3,10 @@ type Product = {
   createdAt: Date;
   name: string;
   slug: string;
-  image: string;
+  image: {
+    alt: string;
+    url: string;
+  };
 };
 
 export default Product;

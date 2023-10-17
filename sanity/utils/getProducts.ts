@@ -1,17 +1,20 @@
 import { groq } from 'next-sanity';
-import Product from '@/types/Product';
 import client from '../config/client';
+import Product from '@/types/Product';
+import Locale from '@/types/Locale';
 
-const getProducts = async (): Promise<Product[]> => {
-  return client.fetch(
+const getProducts = async (locale: Locale): Promise<Product[]> =>
+  client.fetch(
     groq`*[_type == "product"]{
       _id,
       _createdAt,
-      name,
+      "name": name.${locale},
       "slug": slug.current,
-      "image": image.asset->url
+       "image": {
+        "alt":image.alt, 
+        "url": image.asset->url
+      }
     }`,
   );
-};
 
 export default getProducts;
